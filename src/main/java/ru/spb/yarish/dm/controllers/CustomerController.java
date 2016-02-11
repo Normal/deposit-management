@@ -1,12 +1,18 @@
 package ru.spb.yarish.dm.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(path = "/customer", method = RequestMethod.GET)
 public class CustomerController {
+
+    @RequestMapping("")
+    public String render(Model model) {
+        return "customer";
+    }
 
     @RequestMapping("/transfer")
     public String transfer() {

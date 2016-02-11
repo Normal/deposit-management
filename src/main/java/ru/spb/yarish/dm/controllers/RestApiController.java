@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/api", method = RequestMethod.GET)
-public class PublicApiController {
+public class RestApiController {
 
     @RequestMapping("/all")
     public String getAllDeposities() {
