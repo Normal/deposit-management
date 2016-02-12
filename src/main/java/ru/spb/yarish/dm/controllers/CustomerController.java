@@ -5,12 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping(path = "/customer", method = RequestMethod.GET)
 public class CustomerController {
 
     @RequestMapping("")
-    public String render(Model model) {
+    public String render(Model model, Principal principal) {
+        String name = principal.getName();
+        model.addAttribute("username", name);
         return "customer";
     }
 
