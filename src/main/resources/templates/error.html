@@ -7,9 +7,7 @@ See explanation below:
 <span th:text="${status}"></span>
 <span th:text="${error}"></span>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+<div th:include="layout :: footer"></div>
 </body>
 
 </html>

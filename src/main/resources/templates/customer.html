@@ -2,13 +2,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
+<head th:include="layout :: header"></head>
 <body>
     This is customer page. Hello, <span th:text="${username}"></span>
 
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
+    <div th:include="layout :: footer"></div>
 </body>
 
 </html>
