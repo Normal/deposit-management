@@ -1,4 +1,4 @@
-package ru.spb.yarish.dm.configs;
+package ru.spb.yarish.dm.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

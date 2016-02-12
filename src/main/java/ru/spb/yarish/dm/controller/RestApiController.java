@@ -1,4 +1,4 @@
-package ru.spb.yarish.dm.controllers;
+package ru.spb.yarish.dm.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

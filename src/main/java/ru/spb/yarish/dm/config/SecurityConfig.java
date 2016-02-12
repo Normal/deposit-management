@@ -1,4 +1,4 @@
-package ru.spb.yarish.dm.configs;
+package ru.spb.yarish.dm.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -8,38 +8,40 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import ru.spb.yarish.dm.service.AuthenticationService;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private UserDetailsService userService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                     .antMatchers("/", "/public/**").permitAll()
-                    .antMatchers("/operator/**").hasRole("ADMIN")
-                .antMatchers("/customer/**").hasRole("USER")
+                    .antMatchers("/operator/**").hasAuthority("ADMIN")
+                    .antMatchers("/customer/**").hasAuthority("USER")
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
-//                    .failureUrl("/login?error")
-//                    .usernameParameter("email")
                     .permitAll()
                 .and()
                     .logout()
-//                    .logoutUrl("/logout")
-//                    .deleteCookies("remember-me")
                     .logoutSuccessUrl("/")
                     .permitAll();
-//                .and()
-//                .rememberMe();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("test").password("test").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
+        auth
+                .userDetailsService(userService)
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
 }
