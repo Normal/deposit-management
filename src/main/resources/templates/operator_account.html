@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: header"></head>
+<body>
+
+
+<form action="#" th:action="@{/operator/account}" th:object="${account}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Password: <input type="text" th:field="*{password}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+<div th:include="layout :: footer"></div>
+</body>
+
+</html>

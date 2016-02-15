@@ -8,9 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
 import ru.spb.yarish.dm.repository.AccountRepository;
-import ru.spb.yarish.dm.entity.Account;
+import ru.spb.yarish.dm.model.entity.Account;
 
 @Service
 public class AuthenticationService implements UserDetailsService {

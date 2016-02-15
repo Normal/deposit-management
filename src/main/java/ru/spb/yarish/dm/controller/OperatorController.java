@@ -1,26 +1,61 @@
 package ru.spb.yarish.dm.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import ru.spb.yarish.dm.model.entity.Account;
+import ru.spb.yarish.dm.model.entity.Deposit;
+import ru.spb.yarish.dm.model.dto.DepositForm;
+import ru.spb.yarish.dm.service.AccountService;
+import ru.spb.yarish.dm.service.DepositService;
 
 @Controller
 @RequestMapping("/operator")
 public class OperatorController {
 
+    @Autowired
+    private AccountService accountService;
+
+    @Autowired
+    private DepositService depositService;
+
     @RequestMapping("")
     public String render(Model model) {
-        return "operator";
+        model.addAttribute("account", new Account());
+        return "operator_index";
     }
 
-    @RequestMapping("/account")
-    public String createCustomerAccount() {
-        return "1";
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    public String renderCreateCustomerAccount(Model model) {
+        model.addAttribute("account", new Account());
+        return "operator_account";
     }
 
-    @RequestMapping("/deposit")
-    public String createCustomerDeposit() {
-        return "1";
+    @RequestMapping(value = "/account", method = RequestMethod.POST)
+    public String createCustomerAccount(@ModelAttribute Account account, Model model) {
+        accountService.createCustomer(account);
+        model.addAttribute("status", "done");
+
+        return "operator_index";
+    }
+
+    @RequestMapping(value = "/deposit", method = RequestMethod.GET)
+    public String renderCreateCustomerDeposit(Model model) {
+        model.addAttribute("deposit", new DepositForm());
+        model.addAttribute("names", accountService.getCustomersNames());
+        return "operator_deposit";
+    }
+
+    @RequestMapping(value = "/deposit", method = RequestMethod.POST)
+    public String createCustomerDeposit(@ModelAttribute DepositForm deposit, Model model) {
+        depositService.createDeposit(deposit);
+        model.addAttribute("status", "done");
+
+        return "operator_index";
     }
 
 }

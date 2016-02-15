@@ -1,4 +1,4 @@
-package ru.spb.yarish.dm.entity;
+package ru.spb.yarish.dm.model.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
