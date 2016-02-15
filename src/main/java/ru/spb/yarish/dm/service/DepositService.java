@@ -2,8 +2,6 @@ package ru.spb.yarish.dm.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +13,9 @@ import ru.spb.yarish.dm.model.dto.DepositForm;
 import ru.spb.yarish.dm.repository.AccountRepository;
 import ru.spb.yarish.dm.repository.DepositRepository;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceException;
 
 @Service
 @Slf4j
@@ -62,6 +58,7 @@ public class DepositService {
         DepositResult dr = new DepositResult();
         BeanUtils.copyProperties(x, dr);
         dr.setAccount(x.getAccount().getName());
+        dr.setCreation(new SimpleDateFormat("dd/MMM/yyyy").format(x.getCreationDate()));
         return dr;
     }
 }

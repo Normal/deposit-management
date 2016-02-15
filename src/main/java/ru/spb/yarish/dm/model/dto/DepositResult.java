@@ -3,8 +3,6 @@ package ru.spb.yarish.dm.model.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Setter @Getter
 public class DepositResult {
 
@@ -12,5 +10,5 @@ public class DepositResult {
     private String number;
     private Double balance;
     private String account;
-    private Date creationDate;
+    private String creation;
 }
