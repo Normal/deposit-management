@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DepositService {
 
+    private static final String SEPARATOR = "_";
+
     @Autowired
     private DepositRepository depositRepository;
 
@@ -34,7 +36,13 @@ public class DepositService {
 
         Account account = accountRepository.getByName(depositForm.getAccount()).get();
         deposit.setAccount(account);
+        deposit.setNumber(depositForm.getIndex() + SEPARATOR + depositForm.getNumber());
         depositRepository.create(deposit);
+    }
+
+    @Transactional
+    public List<String> getBankIndexes() {
+        return depositRepository.getIndexes();
     }
 
     @Transactional

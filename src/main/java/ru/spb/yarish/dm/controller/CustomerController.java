@@ -12,15 +12,15 @@ import java.security.Principal;
 public class CustomerController {
 
     @RequestMapping("")
-    public String render(Model model, Principal principal) {
+    public String indexPage(Model model, Principal principal) {
         String name = principal.getName();
         model.addAttribute("username", name);
-        return "customer";
+        return "customer_index";
     }
 
-    @RequestMapping("/transfer")
-    public String transfer() {
-        return "1";
+    @RequestMapping(value = "/transfer", method = RequestMethod.GET)
+    public String transferPage(Model model) {
+        return "customer/customer_transfer";
     }
 
     @RequestMapping("/history")

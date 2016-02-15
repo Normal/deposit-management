@@ -6,6 +6,11 @@
 <body>
     This is customer page. Hello, <span th:text="${username}"></span>
 
+    <span th:text="${status}"></span>
+    <a href="/customer/transfer">Transfer money</a> <br />
+    <a href="/customer/history">View history</a> <br />
+    <a href="/customer/close">Close deposit</a> <br />
+
     <div th:include="layout :: footer"></div>
 </body>
 

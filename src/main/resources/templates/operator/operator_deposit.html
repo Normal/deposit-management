@@ -9,7 +9,11 @@
         <select th:field="*{account}">
             <option th:each="name : ${names}" th:value="${name}" th:text="${name}"></option>
         </select></p>
-    <p>Number: <input type="text" th:field="*{number}" /></p>
+    <p>Number:
+        <select th:field="*{index}">
+            <option th:each="index : ${indexes}" th:value="${index}" th:text="${index}"></option>
+        </select>
+        <input type="text" th:field="*{number}" /></p>
     <p>Balance: <input type="text" th:field="*{balance}" /></p>
     <p><input type="submit" value="Submit" /></p>
 </form>
