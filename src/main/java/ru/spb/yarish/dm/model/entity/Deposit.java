@@ -34,7 +34,7 @@ public class Deposit {
     private Double balance;
 
     @Column(name = "closed")
-    private Boolean closed;
+    private Boolean closed = false;
 
     @ManyToOne
     @JoinColumn(name = "account_id")

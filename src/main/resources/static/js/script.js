@@ -33,8 +33,8 @@ $(function () {
             handleError("Amount should be determined", event);
         }
 
-        if (!to.length) {
-            handleError("Transfer destination should be defined", event);
+        if (!to.length || !from.length) {
+            handleError("Deposits should be defined", event);
         }
 
         if (balance - amount <= 0) {

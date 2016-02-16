@@ -37,7 +37,7 @@ public class OperatorController {
     @RequestMapping(value = "/account", method = RequestMethod.POST)
     public String createAccount(@ModelAttribute Account account, Model model) {
         accountService.createCustomer(account);
-        model.addAttribute("status", "done");
+        model.addAttribute("status", "Account successfully created!");
 
         return "operator/index";
     }
@@ -53,7 +53,7 @@ public class OperatorController {
     @RequestMapping(value = "/deposit", method = RequestMethod.POST)
     public String createDeposit(@ModelAttribute DepositForm deposit, Model model) {
         depositService.createDeposit(deposit);
-        model.addAttribute("status", "done");
+        model.addAttribute("status", "Deposit successfully created!");
 
         return "operator/index";
     }

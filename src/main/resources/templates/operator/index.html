@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: header"></head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Operator main page</title>
+</head>
 <body>
-    This is operator page
+    <div layout:fragment="content">
+        <h1>This is operator page</h1>
 
-    <span th:text="${status}"></span>
-    <a href="/operator/account">Create account</a> <br />
-    <a href="/operator/deposit">Create deposit</a> <br />
-
-    <div th:include="layout :: footer"></div>
+        <h4 class="text-success" id="status" th:text="${status}"></h4>
+        <ul class="nav nav-pills">
+            <li><a href="/operator/account"><h3>Create account</h3></a></li>
+            <li><a href="/operator/deposit"><h3>Create deposit</h3></a></li>
+        </ul>
+    </div>
 </body>
 
 </html>
