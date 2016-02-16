@@ -10,6 +10,8 @@ import ru.spb.yarish.dm.model.entity.Transaction;
 import ru.spb.yarish.dm.repository.DepositRepository;
 import ru.spb.yarish.dm.repository.TransactionRepository;
 
+import java.util.List;
+
 @Service
 public class TransactionService {
 
@@ -36,5 +38,10 @@ public class TransactionService {
         to.setBalance(to.getBalance() + tr.getAmount());
 
         transactionRepository.create(tr);
+    }
+
+    @Transactional
+    public List<Transaction> getByUser(String userName) {
+        return transactionRepository.getByUser(userName);
     }
 }

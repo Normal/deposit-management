@@ -3,7 +3,8 @@ package ru.spb.yarish.dm.model.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "transaction_id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "user")
@@ -43,6 +44,6 @@ public class Transaction {
 
     @PrePersist
     protected void onCreate() {
-        creationDate = new Date();
+        creationDate = new Date(new java.util.Date().getTime());
     }
 }

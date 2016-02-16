@@ -13,6 +13,7 @@ import ru.spb.yarish.dm.service.DepositService;
 import ru.spb.yarish.dm.service.TransactionService;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
@@ -31,7 +32,7 @@ public class CustomerController {
     public String indexPage(Model model, Principal pr) {
         model.addAttribute("username", pr.getName());
 
-        return "customer/customer_index";
+        return "customer/index";
     }
 
     @RequestMapping(value = "/transfer", method = RequestMethod.GET)
@@ -40,7 +41,7 @@ public class CustomerController {
         model.addAttribute("names", accountService.getCustomersNames());
         model.addAttribute("transaction", new Transaction());
 
-        return "customer/customer_transfer";
+        return "customer/transfer";
     }
 
     @RequestMapping(value = "/transfer", method = RequestMethod.POST)
@@ -49,12 +50,15 @@ public class CustomerController {
         transactionService.processTransaction(tr);
         model.addAttribute("status", "done");
 
-        return "customer/customer_index";
+        return "customer/index";
     }
 
-    @RequestMapping("/history")
-    public String viewHistory() {
-        return "1";
+    @RequestMapping(value = "/history", method = RequestMethod.GET)
+    public String viewHistory(Model model, Principal pr) {
+        List<Transaction> trs = transactionService.getByUser(pr.getName());
+        model.addAttribute("transactions", trs);
+
+        return "customer/history";
     }
 
     @RequestMapping("/close")

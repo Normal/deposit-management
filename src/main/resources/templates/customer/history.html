@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: header"></head>
+<body>
+
+    <table>
+        <th:block th:each="tr : ${transactions}">
+            <tr>
+                <td th:text="${tr.id}"></td>
+                <td th:text="${tr.user}"></td>
+                <td th:text="${tr.amount}"></td>
+                <td th:text="${tr.fromDeposit}"></td>
+                <td th:text="${tr.toUser}"></td>
+                <td th:text="${tr.toDeposit}"></td>
+                <td th:text="${tr.creationDate}"></td>
+            </tr>
+        </th:block>
+    </table>
+
+<div th:include="layout :: footer"></div>
+</body>
+
+</html>

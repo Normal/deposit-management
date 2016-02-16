@@ -25,13 +25,13 @@ public class OperatorController {
     @RequestMapping("")
     public String indexPage(Model model) {
         model.addAttribute("account", new Account());
-        return "operator/operator_index";
+        return "operator/index";
     }
 
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public String createAccountPage(Model model) {
         model.addAttribute("account", new Account());
-        return "operator/operator_account";
+        return "operator/account";
     }
 
     @RequestMapping(value = "/account", method = RequestMethod.POST)
@@ -39,7 +39,7 @@ public class OperatorController {
         accountService.createCustomer(account);
         model.addAttribute("status", "done");
 
-        return "operator/operator_index";
+        return "operator/index";
     }
 
     @RequestMapping(value = "/deposit", method = RequestMethod.GET)
@@ -47,7 +47,7 @@ public class OperatorController {
         model.addAttribute("deposit", new DepositForm());
         model.addAttribute("names", accountService.getCustomersNames());
         model.addAttribute("indexes", depositService.getBankIndexes());
-        return "operator/operator_deposit";
+        return "operator/deposit";
     }
 
     @RequestMapping(value = "/deposit", method = RequestMethod.POST)
@@ -55,7 +55,7 @@ public class OperatorController {
         depositService.createDeposit(deposit);
         model.addAttribute("status", "done");
 
-        return "operator/operator_index";
+        return "operator/index";
     }
 
 }
