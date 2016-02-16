@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+      <title>Index page</title>
+</head>
 <body>
-This is main page <br />
-<a href="/operator">Operator link</a> <br />
-<a href="/customer">Customer link</a> <br />
+      <div layout:fragment="content">
+            <h1>This is main page</h1> <br />
+            <ul class="nav nav-pills">
+                  <li><a href="/operator"><h3>Operator link</h3></a></li>
+                  <li><a href="/customer"><h3>Customer link</h3></a></li>
+            </ul>
+      </div>
+
+      <div layout:fragment="footer"></div>
 </body>
 
 </html>

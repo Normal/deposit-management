@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Error page</title>
+</head>
 <body>
-We are sorry, but some goes wrong.
-See explanation below:
-<span th:text="${status}"></span>
-<span th:text="${error}"></span>
+    <div layout:fragment="content">
+        I'm sorry, but something goes wrong.
+        See explanation below:
+        <span th:text="${status}"></span>
+        <span th:text="${error}"></span>
+    </div>
 
-<div th:include="layout :: footer"></div>
 </body>
 
 </html>

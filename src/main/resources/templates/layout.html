@@ -1,16 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head th:fragment="header">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="../webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <link th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" rel="stylesheet" />
     </head>
     <body>
-
-        <div th:fragment="footer">
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
-            <script src="../webjars/jquery/2.2.0/jquery.min.js"></script>
+        <div class="row"></div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div layout:fragment="content">Mock</div>
+            </div>
+            <div class="col-md-4"></div>
         </div>
+        <div class="row"></div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div layout:fragment="footer">
+                    <form th:action="@{/logout}" method="post">
+                        <a class="btn btn-link" th:href="@{/}">Index page</a>
+                        <input class="btn btn-danger" type="submit" value="Sign Out"/>
+                    </form>
+                    <script th:src="@{/webjars/jquery/2.2.0/jquery.min.js}"></script>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
     </body>
 </html>
