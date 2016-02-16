@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: header"></head>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Customer main page</title>
+</head>
 <body>
+    <div layout:fragment="content">
+        <h2>This is customer page. Hello, <span th:text="${username}"></span></h2> <br />
 
-    This is customer page. Hello, <span th:text="${username}"></span>
-
-    <span th:text="${status}"></span>
-    <a href="/customer/transfer">Transfer money</a> <br />
-    <a href="/customer/history">View history</a> <br />
-    <a href="/customer/close">Close deposit</a> <br />
-
-    <div th:include="layout :: footer"></div>
+        <h4 class="text-success" id="status" th:text="${status}"></h4>
+        <ul class="nav nav-pills">
+            <li><a href="/customer/transfer"><h3>Transfer money</h3></a></li>
+            <li><a href="/customer/history"><h3>View history</h3></a></li>
+            <li><a href="/customer/close"><h3>Close deposit</h3></a></li>
+        </ul>
+    </div>
 </body>
 
 </html>

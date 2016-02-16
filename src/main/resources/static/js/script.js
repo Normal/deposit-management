@@ -1,5 +1,7 @@
 $(function () {
 
+    $("#status").fadeOut(3000);
+
     $("#toUser").change(function () {
         var userName = $("#toUser").val();
 
@@ -28,18 +30,20 @@ $(function () {
         var amount = $("#amount").val();
 
         if (!amount) {
-            alert("Amount should be determined");
-            event.preventDefault();
+            handleError("Amount should be determined", event);
         }
 
         if (!to.length) {
-            alert("Transfer destination should be defined");
-            event.preventDefault();
+            handleError("Transfer destination should be defined", event);
         }
 
         if (balance - amount <= 0) {
-            alert("Updated balance value can't be negative");
-            event.preventDefault();
+            handleError("Updated balance value can't be negative", event);
         }
     });
 });
+
+function handleError(message, event) {
+    $("#error").html(message);
+    event.preventDefault();
+}

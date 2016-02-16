@@ -47,9 +47,11 @@ public class CustomerController {
 
     @RequestMapping(value = "/transfer", method = RequestMethod.POST)
     public String transfer(@ModelAttribute Transaction tr, Model model, Principal pr) {
-        tr.setUser(pr.getName());
+        String userName = pr.getName();
+        tr.setUser(userName);
         transactionService.processTransaction(tr);
-        model.addAttribute("status", "done");
+        model.addAttribute("status", "Successfully transferred!");
+        model.addAttribute("username", userName);
 
         return "customer/index";
     }
@@ -70,9 +72,10 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/close", method = RequestMethod.POST)
-    public String closeDeposit(@RequestParam("deposit") String deposit, Model model) {
+    public String closeDeposit(@RequestParam("deposit") String deposit, Model model, Principal pr) {
         depositService.closeDeposit(deposit);
-        model.addAttribute("status", "done");
+        model.addAttribute("status", "Successfully closed!");
+        model.addAttribute("username", pr.getName());
 
         return "customer/index";
     }

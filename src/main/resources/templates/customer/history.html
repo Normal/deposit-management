@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: header"></head>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>History page</title>
+</head>
 <body>
-
-    <table>
-        <th:block th:each="tr : ${transactions}">
+    <div id="content" layout:fragment="content">
+        <table class="table">
             <tr>
-                <td th:text="${tr.id}"></td>
-                <td th:text="${tr.user}"></td>
-                <td th:text="${tr.amount}"></td>
-                <td th:text="${tr.fromDeposit}"></td>
-                <td th:text="${tr.toUser}"></td>
-                <td th:text="${tr.toDeposit}"></td>
-                <td th:text="${tr.creationDate}"></td>
+                <th>Id</th>
+                <th>From user</th>
+                <th>From deposit</th>
+                <th>Amount</th>
+                <th>To user</th>
+                <th>To deposit</th>
+                <th>Date</th>
             </tr>
-        </th:block>
-    </table>
-
-<div th:include="layout :: footer"></div>
+            <th:block th:each="tr : ${transactions}">
+                <tr>
+                    <td th:text="${tr.id}"></td>
+                    <td th:text="${tr.user}"></td>
+                    <td th:text="${tr.fromDeposit}"></td>
+                    <td th:text="${tr.amount}"></td>
+                    <td th:text="${tr.toUser}"></td>
+                    <td th:text="${tr.toDeposit}"></td>
+                    <td th:text="${tr.creationDate}"></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
 </body>
 
 </html>
