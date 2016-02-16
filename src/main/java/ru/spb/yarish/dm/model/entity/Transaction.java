@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+/**
+ * Transaction represents money transferring between two deposits.
+ */
 @Entity
 @Table(name = "transactions")
 @Getter @Setter

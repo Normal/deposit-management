@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import ru.spb.yarish.dm.repository.AccountRepository;
 import ru.spb.yarish.dm.model.entity.Account;
 
+/**
+ * Links our users with spring security.
+ * @see ru.spb.yarish.dm.config.SecurityConfig
+ */
 @Service
 public class AuthenticationService implements UserDetailsService {
 

@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * This is the prefix code for deposit number, which represents bank code.
+ */
 @Entity
 @Table(name = "indexes")
 @Getter @Setter

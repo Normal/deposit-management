@@ -14,7 +14,6 @@ import ru.spb.yarish.dm.service.DepositService;
 import ru.spb.yarish.dm.service.TransactionService;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
@@ -58,8 +57,7 @@ public class CustomerController {
 
     @RequestMapping(value = "/history", method = RequestMethod.GET)
     public String historyPage(Model model, Principal pr) {
-        List<Transaction> trs = transactionService.getByUser(pr.getName());
-        model.addAttribute("transactions", trs);
+        model.addAttribute("transactions", transactionService.getByUser(pr.getName()));
 
         return "customer/history";
     }
