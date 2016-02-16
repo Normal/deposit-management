@@ -22,14 +22,24 @@ $(function () {
     });
 
     $("#transfer_form").submit(function (event) {
-        var balance = $("#fromDeposit").find("option:selected").attr("data");
+        var from = $("#fromDeposit").find("option:selected");
+        var to = $("#toDeposit").find("option:selected");
+        var balance = from.attr("data");
         var amount = $("#amount").val();
 
-        // TODO: add additional conditions here
-        if (balance - amount >= 0) {
-            return;
+        if (!amount) {
+            alert("Amount should be determined");
+            event.preventDefault();
         }
 
-        event.preventDefault();
+        if (!to.length) {
+            alert("Transfer destination should be defined");
+            event.preventDefault();
+        }
+
+        if (balance - amount <= 0) {
+            alert("Updated balance value can't be negative");
+            event.preventDefault();
+        }
     });
 });

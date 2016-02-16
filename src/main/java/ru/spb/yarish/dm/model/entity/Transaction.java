@@ -3,11 +3,14 @@ package ru.spb.yarish.dm.model.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -34,4 +37,12 @@ public class Transaction {
 
     @Column(name = "to_deposit")
     private String toDeposit;
+
+    @Column(name = "created")
+    private Date creationDate;
+
+    @PrePersist
+    protected void onCreate() {
+        creationDate = new Date();
+    }
 }
