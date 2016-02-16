@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: header"></head>
+<body>
+
+<form id="transfer_form" action="#" th:action="@{/customer/transfer}" th:object="${transaction}" method="post">
+    <p>From:
+        <select th:field="*{fromDeposit}">
+            <option th:data="${deposit.balance}" th:each="deposit : ${deposits}" th:value="${deposit.number}" th:text="${deposit}"></option>
+        </select>
+    </p>
+    <p id="to">To:
+        <select th:field="*{toUser}">
+            <option value="">Select user</option>
+            <option th:each="name : ${names}" th:value="${name}" th:text="${name}"></option>
+        </select>
+    </p>
+    <p>Amount: <input type="text" id="amount" th:field="*{amount}"  /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+<div th:include="layout :: footer"></div>
+<script type="text/javascript" th:src="@{/js/customer.js}"></script>
+</body>
+
+</html>

@@ -3,7 +3,6 @@ package ru.spb.yarish.dm.repository;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.spb.yarish.dm.model.entity.BankIndex;
 import ru.spb.yarish.dm.model.entity.Deposit;
 
 import java.util.List;

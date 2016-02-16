@@ -15,6 +15,7 @@ import ru.spb.yarish.dm.repository.DepositRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,6 +61,13 @@ public class DepositService {
             return null;
         }
         return transform(deposit);
+    }
+
+    @Transactional
+    public Set<DepositResult> getCustomerDeposits(String userName) {
+        return accountRepository.getByName(userName).get().getDeposits().stream()
+                .map(this::transform)
+                .collect(Collectors.toSet());
     }
 
     private DepositResult transform(Deposit x) {

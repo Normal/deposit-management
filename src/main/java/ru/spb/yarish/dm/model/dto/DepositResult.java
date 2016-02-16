@@ -11,4 +11,9 @@ public class DepositResult {
     private Double balance;
     private String account;
     private String creation;
+
+    @Override
+    public String toString() {
+        return number + " - " + balance;
+    }
 }

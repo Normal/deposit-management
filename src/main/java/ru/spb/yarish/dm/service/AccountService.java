@@ -28,6 +28,7 @@ public class AccountService {
         repository.create(account);
     }
 
+    @Transactional
     public List<String> getCustomersNames() {
         return repository.getAllNames();
     }

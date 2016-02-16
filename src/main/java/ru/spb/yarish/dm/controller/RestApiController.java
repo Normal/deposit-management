@@ -13,10 +13,7 @@ import ru.spb.yarish.dm.model.dto.DepositResult;
 import ru.spb.yarish.dm.service.DepositService;
 
 import java.util.List;
-
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceException;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api", method = RequestMethod.GET)
@@ -31,7 +28,7 @@ public class RestApiController {
         return service.getAllDeposits();
     }
 
-    @RequestMapping("/find")
+    @RequestMapping("/bynumber")
     public ResponseEntity<DepositResult> getDepositByNumber(@RequestParam("number") String number) {
         DepositResult deposit = service.getDepositByNumber(number);
         if (deposit != null) {
@@ -40,5 +37,10 @@ public class RestApiController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    @RequestMapping("/byuser")
+    public Set<DepositResult> getDepositsByUser(@RequestParam("user") String name) {
+        return service.getCustomerDeposits(name);
     }
 }
