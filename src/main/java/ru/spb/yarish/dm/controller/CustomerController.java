@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ru.spb.yarish.dm.model.entity.Transaction;
 import ru.spb.yarish.dm.service.AccountService;
@@ -54,15 +55,25 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/history", method = RequestMethod.GET)
-    public String viewHistory(Model model, Principal pr) {
+    public String historyPage(Model model, Principal pr) {
         List<Transaction> trs = transactionService.getByUser(pr.getName());
         model.addAttribute("transactions", trs);
 
         return "customer/history";
     }
 
-    @RequestMapping("/close")
-    public String closeDeposit() {
-        return "1";
+    @RequestMapping(value = "/close", method = RequestMethod.GET)
+    public String closeDepositPage(Model model, Principal pr) {
+        model.addAttribute("deposits", depositService.getCustomerDeposits(pr.getName()));
+
+        return "customer/close";
+    }
+
+    @RequestMapping(value = "/close", method = RequestMethod.POST)
+    public String closeDeposit(@RequestParam("deposit") String deposit, Model model) {
+        depositService.closeDeposit(deposit);
+        model.addAttribute("status", "done");
+
+        return "customer/index";
     }
 }

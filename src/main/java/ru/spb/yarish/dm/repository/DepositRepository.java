@@ -28,7 +28,7 @@ public class DepositRepository {
     }
 
     public Deposit getByNumber(String number) {
-        List<Deposit> result = em.createQuery("from Deposit where number=?", Deposit.class)
+        List<Deposit> result = em.createQuery("from Deposit where number=? and closed=false", Deposit.class)
                 .setParameter(1, number)
                 .getResultList();
         if (result.isEmpty()) {

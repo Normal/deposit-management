@@ -33,6 +33,9 @@ public class Deposit {
     @Column(name = "balance")
     private Double balance;
 
+    @Column(name = "closed")
+    private Boolean closed;
+
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;

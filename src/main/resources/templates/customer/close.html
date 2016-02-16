@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: header"></head>
+<body>
+
+<form action="#" th:action="@{/customer/close}" method="post">
+    <p>From:
+        <select name="deposit">
+            <option th:data="${deposit.balance}" th:each="deposit : ${deposits}" th:value="${deposit.number}" th:text="${deposit}"></option>
+        </select>
+    </p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+<div th:include="layout :: footer"></div>
+</body>
+
+</html>

@@ -65,8 +65,16 @@ public class DepositService {
     @Transactional
     public Set<DepositResult> getCustomerDeposits(String userName) {
         return accountRepository.getByName(userName).get().getDeposits().stream()
+                .filter(x -> !x.getClosed())
                 .map(this::transform)
                 .collect(Collectors.toSet());
+    }
+
+    @Transactional
+    public void closeDeposit(String number) {
+        Deposit deposit = depositRepository.getByNumber(number);
+        deposit.setClosed(true);
+        deposit.setBalance(0d);
     }
 
     private DepositResult transform(Deposit x) {
