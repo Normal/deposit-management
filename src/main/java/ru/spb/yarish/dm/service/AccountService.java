@@ -1,6 +1,7 @@
 package ru.spb.yarish.dm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +18,7 @@ public class AccountService {
     @Autowired
     private AccountRepository repository;
 
-    @Autowired
-    private PasswordEncoder encoder;
+    private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Transactional
     public void createCustomer(Account account) {

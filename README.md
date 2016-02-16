@@ -1,12 +1,15 @@
 ## Run
-1. Execute DmRunner's main method in order to start application
-2. Locate **http://localhost:8080/** for project main page.
+1. Execute ```mvn clean package```
+2. Then ```java -jar 'deposit-management-0.0.1-SNAPSHOT.jar'```
+3. Locate **http://localhost:8080/** for project main page.
+
+## Run from IDEA
+1. In order to compile project from IDEA, please install **Lombok** plugin.
+2. Execute DmRunner's main method in order to start application.
+3. Locate **http://localhost:8080/** for project main page.
 
 When application has been started, you can observe in logs something like this:
 >: Started DmRunner in 9.045 seconds (JVM running for 9.71)
-
-### Run from IDEA
-In order to compile project from IDEA, please install Lombok plugin.
 
 ## Technology stack
 1. Java8 - I use v 1.8.0_40
