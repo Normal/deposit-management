@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "deposits")
 @Getter @Setter
-@EqualsAndHashCode(exclude={"id", "balance", "creationDate", "account"})
+@EqualsAndHashCode(exclude={"id", "balance", "account"})
 public class Deposit {
 
     @Id
@@ -33,15 +33,7 @@ public class Deposit {
     @Column(name = "balance")
     private Double balance;
 
-    @Column(name = "created")
-    private Date creationDate;
-
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
-
-    @PrePersist
-    protected void onCreate() {
-        creationDate = new Date();
-    }
 }

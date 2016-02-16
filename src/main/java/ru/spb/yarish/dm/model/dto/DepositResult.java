@@ -10,7 +10,6 @@ public class DepositResult {
     private String number;
     private Double balance;
     private String account;
-    private String creation;
 
     @Override
     public String toString() {

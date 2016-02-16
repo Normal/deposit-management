@@ -13,7 +13,6 @@ import ru.spb.yarish.dm.model.dto.DepositForm;
 import ru.spb.yarish.dm.repository.AccountRepository;
 import ru.spb.yarish.dm.repository.DepositRepository;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -74,7 +73,6 @@ public class DepositService {
         DepositResult dr = new DepositResult();
         BeanUtils.copyProperties(x, dr);
         dr.setAccount(x.getAccount().getName());
-        dr.setCreation(new SimpleDateFormat("dd/MMM/yyyy").format(x.getCreationDate()));
         return dr;
     }
 }
