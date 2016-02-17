@@ -18,5 +18,5 @@ INSERT INTO `indexes` VALUES
   (2, '2222');
 
 INSERT INTO `transactions` (`id`, `user`, `amount`, `from_deposit`, `to_user`, `to_deposit`, `created`) VALUES
-  (1, 'user1', 15, '2222_7878787', 'user2', '1111_6565656', {ts '2016-01-20'}),
+  (1, 'user1', 15, '2222_7878787', 'user2', '1111_6565656', {ts '2015-01-20'}),
   (2, 'user1', 30, '2222_7878787', 'user2', '2222_4343434', {ts '2016-01-25'});

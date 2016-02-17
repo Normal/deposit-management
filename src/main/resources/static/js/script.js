@@ -37,7 +37,7 @@ $(function () {
             handleError("Deposits should be defined", event);
         }
 
-        if (balance - amount <= 0) {
+        if (balance - amount < 0) {
             handleError("Updated balance value can't be negative", event);
         }
     });

@@ -1,18 +1,23 @@
 package ru.spb.yarish.dm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.spb.yarish.dm.model.TransactionConstraintsViolationException;
 import ru.spb.yarish.dm.model.entity.Deposit;
 import ru.spb.yarish.dm.model.entity.Transaction;
 import ru.spb.yarish.dm.repository.DepositRepository;
 import ru.spb.yarish.dm.repository.TransactionRepository;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Slf4j
 public class TransactionService {
 
     @Autowired
@@ -43,5 +48,16 @@ public class TransactionService {
     @Transactional
     public List<Transaction> getByUser(String userName) {
         return transactionRepository.getByUser(userName);
+    }
+
+    /**
+     * Everyday at 2 AM
+     */
+    @Scheduled(cron = "0 0 2 * * ?")
+    @Transactional
+    public void removeStaleTransactions() {
+        log.debug("Scheduler was triggered!");
+        LocalDate boundary = LocalDate.now().minusDays(30);
+        transactionRepository.removeStale(Date.valueOf(boundary));
     }
 }

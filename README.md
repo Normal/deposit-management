@@ -27,3 +27,10 @@ When application has been started, you can observe in logs something like this:
 - *application.properties* - default project settings
 - *ru.spb.yarish.dm.config* - spring contexts
 - *resources/templates/layout.html* - base template
+
+## REST api calling example
+- > http://localhost:8080/api/all
+- > http://localhost:8080/api/bynumber?number=2222_7878787
+
+## Scheduler 
+See *removeStaleTransactions* at *TransactionService*
